@@ -23,7 +23,7 @@ function App() {
     try {
       const response = await axios.get(BaseURL);
       setData(response?.data);
-      console.log("abhishek",data);
+      console.log("abhi",data);
     } catch (error) {
       console.error("Error fetching data:", error.message);
     } finally {

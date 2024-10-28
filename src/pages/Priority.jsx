@@ -6,6 +6,7 @@ import UrgentPriority from "../asset/icons_FEtask/SVG - Urgent Priority colour.s
 import NoPriority from "../asset/icons_FEtask/No-priority.svg";
 import Plus from '../asset/icons_FEtask/add.svg';
 import dotMenuSymbol from '../asset/icons_FEtask/3 dot menu.svg';
+import DP from './DP';
 
 const Priority=({order,data})=>
 {
@@ -59,7 +60,9 @@ const Priority=({order,data})=>
         </h3>{" "}
        
         {groupedTickets.length > 0 ? (
-          groupedTickets.map((ticket) => (
+          groupedTickets.map((ticket) => {
+        const user = data?.users.find(user => user.id === ticket.userId)||null;
+            return (
             <div key={ticket.id} className="ticket-card">
               <div className="card-header">
                 <div className="ticket-icon">
@@ -69,10 +72,7 @@ const Priority=({order,data})=>
                   </div>
                   <div className="avatar">
                    
-                    <img
-                      src={`https://via.placeholder.com/30x30?text=${ticket.userId}`}
-                      alt="User"
-                    />
+                    <DP name={user?.name}/>
                   </div>
                 </div>
               </div>
@@ -82,7 +82,7 @@ const Priority=({order,data})=>
               <div className="card-feature">Feature Request</div></div>
               
             </div>
-          ))
+          );})
         ) : (
           <p>No tickets with {priorityLabels[priority]} priority</p>
         )}

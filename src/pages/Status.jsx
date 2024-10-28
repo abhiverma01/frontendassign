@@ -48,7 +48,10 @@ const Status = ({ data, order }) => {
             <div>{<img src={dotMenuSymbol} alt="img" />}</div>
           </div>
         </h3>{" "}
-        {groupedTickets.map((ticket) => (
+        {groupedTickets.map((ticket) =>{
+         const user = data?.users.find(user => user.id === ticket.userId)||null;
+
+        return(
           <div key={ticket.id} className="ticket-card">
             <div className="card-header">
               <div className="ticket-icon">
@@ -58,10 +61,7 @@ const Status = ({ data, order }) => {
                 </div>
                 <div className="avatar">
                   {/* Replace with an actual image if available */}
-                  <img
-                    src={`https://via.placeholder.com/30x30?text=${ticket.userId}`}
-                    alt="User"
-                  />
+                  <DP name={user?.name}/>
                 </div>
               </div>
             </div>
@@ -70,7 +70,7 @@ const Status = ({ data, order }) => {
             <div className="card-feature">Feature Request</div>
             </div>
           </div>
-        ))}
+        );})}
       </div>
     );
   };
